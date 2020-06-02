@@ -1,4 +1,4 @@
-# Functions for file handling
+""" STARS server functions for file handling. """
 from pathlib import Path
 
 def getfilepath(filedir, filename):
@@ -15,7 +15,11 @@ def loadfiletolist(filename, serverdir, libdir):
     filepath = Path(libpath, filename)
     with open(filepath, "r") as fobj:
         for line in fobj:
-            if (not line.startswith("#")) or (not line.split()):
+            if line.startswith("#"):
+                pass
+            elif len(line.strip()) == 0:
+                pass
+            else:
                 filecontent.append(line.strip())
     return filecontent
 
@@ -25,7 +29,11 @@ def loadfiletodictionary(filename, serverdir, libdir, dict_aliasreal, dict_reala
     filepath = Path(libpath, filename)
     with open(filepath, "r") as fobj:
         for line in fobj:
-            if (not line.startswith("#")) or (not line.split()):
+            if line.startswith("#"):
+                pass
+            elif len(line.strip()) == 0:
+                pass
+            else:
                 aliasreal = line.split()
                 dict_aliasreal[aliasreal[0]] = aliasreal[1]
                 dict_realalias[aliasreal[1]] = aliasreal[0]
