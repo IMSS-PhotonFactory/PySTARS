@@ -3,6 +3,7 @@ import select
 import socket
 import re
 import random
+from PyStars import __version__, __date__
 import starsutil
 
 TCP_BUFFER_SIZE = starsutil.get_tcpbuffersize()
@@ -195,12 +196,14 @@ class Starsserver:
             self._add_to_send(hd, "System>%s @listaliases %s\n" %(frn, starsutil.system_listaliases(self._aliasreal)))
         elif cmd == 'listnodes':
             self._add_to_send(hd, "System>%s @listnodes %s\n" %(frn, starsutil.system_listnodes(self._node)))
+        elif cmd == 'getversion':
+            self._add_to_send(hd, "System>%s @getversion Version: %s Date: %s\n" %(frn, __version__, __date__))
         elif cmd == 'gettime':
             self._add_to_send(hd, "System>%s @gettime %s\n" %(frn, starsutil.system_gettime()))
         elif cmd == 'hello':
             self._add_to_send(hd, "System>%s @hello Nice to meet you.\n" %frn)
         elif cmd == 'help':
-            self._add_to_send(hd, "System>%s @help flgon flgoff loadaliases listaliases loadpermission loadreconnectablepermission listnodes gettime hello disconnect\n" %frn)
+            self._add_to_send(hd, "System>%s @help flgon flgoff loadaliases listaliases loadpermission loadreconnectablepermission listnodes getversion gettime hello disconnect\n" %frn)
         elif cmd.startswith('@'):
             return True
         else:

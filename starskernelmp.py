@@ -6,6 +6,7 @@ import re
 import random
 import threading
 import multiprocessing as mp
+from PyStars import __version__, __date__
 import starsutil
 
 TCP_BUFFER_SIZE = starsutil.get_tcpbuffersize()
@@ -189,7 +190,7 @@ class Starsserver:
         return ''.join(datafragments)
 
     def _puttosend(self, tonode, buf):
-        sendmsg = StarsMessage(None, buf,)
+        sendmsg = StarsMessage(None, buf)
         self._send_dict[tonode].put(sendmsg)
         if 'Debugger' in self._node:
             self._send_dict['Debugger'].put(sendmsg)
@@ -297,6 +298,8 @@ class Starsserver:
             self._puttosend(sendh, "System>%s @listaliases %s\n" %(frn, starsutil.system_listaliases(self._aliasreal)))
         elif cmd == 'listnodes':
             self._puttosend(sendh, "System>%s @listnodes %s\n" %(frn, starsutil.system_listnodes(self._node)))
+        elif cmd == 'getversion':
+            self._add_to_send(hd, "System>%s @getversion Version: %s Date: %s\n" %(frn, __version__, __date__))
         elif cmd == 'gettime':
             self._puttosend(sendh, "System>%s @gettime %s\n" %(frn, starsutil.system_gettime()))
         elif cmd == 'hello':
