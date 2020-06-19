@@ -7,7 +7,7 @@ stars.kek.jp
 """
 
 __author__ = 'Jan Szczesny'
-__version__ = '1.03'
+__version__ = '1.04'
 __date__ = '2020.06.19'
 
 import os

@@ -299,7 +299,7 @@ class Starsserver:
         elif cmd == 'listnodes':
             self._puttosend(sendh, "System>%s @listnodes %s\n" %(frn, starsutil.system_listnodes(self._node)))
         elif cmd == 'getversion':
-            self._add_to_send(hd, "System>%s @getversion Version: %s Date: %s\n" %(frn, __version__, __date__))
+            self._puttosend(sendh, "System>%s @getversion Version: %s Date: %s\n" %(frn, __version__, __date__))
         elif cmd == 'gettime':
             self._puttosend(sendh, "System>%s @gettime %s\n" %(frn, starsutil.system_gettime()))
         elif cmd == 'hello':
