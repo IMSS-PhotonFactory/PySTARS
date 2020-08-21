@@ -197,7 +197,7 @@ class Starsserver:
 
     def _listener(self):
         while True:
-            new_sock, unused = self._socket.accept()
+            new_sock, _unused = self._socket.accept()
             bufhn, ipadr = starsutil.system_gethostname_or_ip(new_sock)
             if not starsutil.system_checkhost(starsutil.get_hostlist(), bufhn, ipadr, False, self._libdir):
                 self._sendconnmsg(new_sock, "Bad host. %s\n" %bufhn)

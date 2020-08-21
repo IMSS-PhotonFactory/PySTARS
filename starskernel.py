@@ -45,10 +45,10 @@ class Starsserver:
             return False
         self._readable.append(listener)
         while True:
-            read, write, error_unused = select.select(self._readable, self._writeable, [], 2)
+            read, write, _error_unused = select.select(self._readable, self._writeable, [], 2)
             for s in read:
                 if s is listener:
-                    new_sock, unused = s.accept()
+                    new_sock, _unused = s.accept()
                     new_sock.setblocking(0)
                     self._readable.append(new_sock)
                     bufhn, ipadr = starsutil.system_gethostname_or_ip(new_sock)
