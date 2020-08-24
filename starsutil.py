@@ -30,7 +30,7 @@ def system_gettime(tin=None):
 
 def system_gethostname_or_ip(sock, value='both'):
     hostname = ''
-    ip, unused = sock.getpeername()
+    ip, _unused = sock.getpeername()
     try:
         host = socket.gethostbyaddr(ip)
         hostname = host[0]
