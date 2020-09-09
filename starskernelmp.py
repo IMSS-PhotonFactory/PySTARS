@@ -432,9 +432,9 @@ class Starsserver:
         self._lock.release()
 
     def startup(self):
-        _initialized = True
+        initialized = True
         random.seed()
-        _initialized = starsutil.system_loadcommandpermission(self._libdir, self._cmddeny, self._cmdallow)
-        _initialized = starsutil.system_loadaliases(self._libdir, self._aliasreal, self._realalias)
-        _initialized = starsutil.system_loadreconnecttablepermission(self._libdir, self._reconndeny, self._reconnallow)
-        return _initialized
+        initialized = starsutil.system_loadcommandpermission(self._libdir, self._cmddeny, self._cmdallow)
+        initialized = starsutil.system_loadaliases(self._libdir, self._aliasreal, self._realalias)
+        initialized = starsutil.system_loadreconnecttablepermission(self._libdir, self._reconndeny, self._reconnallow)
+        return initialized
