@@ -9,6 +9,7 @@ stars.kek.jp
 __author__ = 'Jan Szczesny'
 __version__ = '1.04'
 __date__ = '2020.06.19'
+__license__ = 'MIT'
 
 import os
 import sys
