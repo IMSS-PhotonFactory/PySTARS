@@ -1,4 +1,7 @@
-""" STARS Server utility functions. """
+"""STARS Server utility functions.
+
+- 2023-01-30 (Mon) Fexed reconnectable problem, T.Kosuge.
+"""
 
 import os
 import random
@@ -142,8 +145,9 @@ def system_loadaliases(libdir, aliasreal, realalias):
 
 def system_loadreconnecttablepermission(libdir, reconndeny, reconnallow):
     try:
-        reconndeny = starsfile.loadfiletolist(RECONNECTABLEDENY, os.path.dirname(os.path.realpath(__file__)), libdir)
-        reconnallow = starsfile.loadfiletolist(RECONNECTABLEALLOW, os.path.dirname(os.path.realpath(__file__)), libdir)
+        #2023-01-30 (Mon) Substitution was changed into extend by T.Kosuge.
+        reconndeny.extend(starsfile.loadfiletolist(RECONNECTABLEDENY, os.path.dirname(os.path.realpath(__file__)), libdir))
+        reconnallow.extend(starsfile.loadfiletolist(RECONNECTABLEALLOW, os.path.dirname(os.path.realpath(__file__)), libdir))
         return True
     except Exception:
         return False

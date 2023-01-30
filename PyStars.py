@@ -4,11 +4,13 @@
 Based on Perl STARS server from Takashi Kosuge; KEK Tsukuba
 stars.kek.jp
 
+- 2020.06.19 Original release. 1.04
+- 2023.01.30 Fexed reconnectable problem, T.Kosuge. 1.05
 """
 
 __author__ = 'Jan Szczesny'
-__version__ = '1.04'
-__date__ = '2020.06.19'
+__version__ = '1.05'
+__date__ = '2023.01.30'
 __license__ = 'MIT'
 
 import os
