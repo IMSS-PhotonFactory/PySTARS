@@ -1,6 +1,7 @@
 """STARS Server utility functions.
 
-- 2023-01-30 (Mon) Fexed reconnectable problem, T.Kosuge.
+- 2023-01-30 (Mon) Fixed reconnectable problem, T.Kosuge.
+- 2023-02-13 (Mon) Fix to avoid command permission problem, J. Szczesny.
 """
 
 import os
@@ -130,8 +131,8 @@ def check_reconnecttable(node, hd, reconndeny, reconnallow):
 
 def system_loadcommandpermission(libdir, cmddeny, cmdallow):
     try:
-        cmddeny = starsfile.loadfiletolist(CMDDENY, os.path.dirname(os.path.realpath(__file__)), libdir)
-        cmdallow = starsfile.loadfiletolist(CMDALLOW, os.path.dirname(os.path.realpath(__file__)), libdir)
+        cmddeny.extend(starsfile.loadfiletolist(CMDDENY, os.path.dirname(os.path.realpath(__file__)), libdir))
+        cmdallow.extend(starsfile.loadfiletolist(CMDALLOW, os.path.dirname(os.path.realpath(__file__)), libdir))
         return True
     except Exception:
         return False
