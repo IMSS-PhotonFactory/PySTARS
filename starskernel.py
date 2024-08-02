@@ -91,6 +91,7 @@ class Starsserver:
                                     self._writeable.remove(s)
                                     del self._writebuf[s]
                                 s.close()
+                                break
                             elif s in self._node_h:
                                 self._sendmes(s, buf)
                             else:
@@ -101,6 +102,7 @@ class Starsserver:
                                         self._writeable.remove(s)
                                         del self._writebuf[s]
                                     s.close()
+                                    break
                     else:
                         self._delnode(s)
                         self._readable.remove(s)

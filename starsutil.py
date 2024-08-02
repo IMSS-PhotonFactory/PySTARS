@@ -103,13 +103,13 @@ def isdenycheckcmd_allow(frm, to, buf, cmdallow):
             return False
     return True
 
-def isdennycheckreconnecttable_deny(node, host, reconndeny):
+def isdenycheckreconnecttable_deny(node, host, reconndeny):
     for chk in reconndeny:
         if (re.match(r"^%s\s+%s$" %(node, host), chk)) or (re.match(r"^%s$" %node, chk)):
             return True
     return False
 
-def isdennycheckreconnecttable_allow(node, host, reconnallow):
+def isdenycheckreconnecttable_allow(node, host, reconnallow):
     for chk in reconnallow:
         if (re.match(r"^%s\s+%s$" %(node, host), chk)) or (re.match(r"^%s$" %node, chk)):
             return False
@@ -124,8 +124,8 @@ def system_listaliases(aliasreal):
 def check_reconnecttable(node, hd, reconndeny, reconnallow):
     if (not reconndeny) and (not reconnallow):
         return False
-    if ((reconndeny) and (isdennycheckreconnecttable_deny(node, system_gethostname_or_ip(hd, 'host'), reconndeny)))\
-        or ((reconnallow) and (isdennycheckreconnecttable_allow(node, system_gethostname_or_ip(hd, 'host'), reconnallow))):
+    if ((reconndeny) and (isdenycheckreconnecttable_deny(node, system_gethostname_or_ip(hd, 'host'), reconndeny)))\
+        or ((reconnallow) and (isdenycheckreconnecttable_allow(node, system_gethostname_or_ip(hd, 'host'), reconnallow))):
         return False
     return True
 

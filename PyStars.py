@@ -6,12 +6,13 @@ stars.kek.jp
 
 - 2020.06.19 Original release. 1.04
 - 2023.01.30 Fixed reconnectable problem, T.Kosuge. 1.05
-- 2023.02.13 Fix to avoid command permission problem, J. Szczesny 1.06
+- 2023.02.13 Fix to avoid command permission problem, J. Szczesny. 1.06
+- 2024.07.28 Fixed server crash if no STARS client try to connect, J. Szczesny. 1.07 
 """
 
 __author__ = 'Jan Szczesny'
-__version__ = '1.06'
-__date__ = '2023.02.13'
+__version__ = '1.07'
+__date__ = '2024.07.28'
 __license__ = 'MIT'
 
 import os
