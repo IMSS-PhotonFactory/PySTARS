@@ -383,12 +383,7 @@ class Starsserver:
             self._puttosend(sendh, "System>%s @disconnect Er: Node %s is down.\n" %(frn, cmd))
             return False
         self._puttosend(sendh, "System>%s @disconnect %s.\n" %(frn, cmd))
-        self._delnode(cmd)
-        del self._send_dict[cmd]
-        self._lock.acquire()
-        self._process_n[cmd].close_connection()
-        del self._process_n[cmd]
-        self._lock.release()
+        self._disconnect_and_terminate(cmd)
         return True
 
     def _system_flgon(self, sendh, frn, cmd):
@@ -423,12 +418,15 @@ class Starsserver:
             return False
 
     def _disconnect_for_reconnect(self, node):
+        self._disconnect_and_terminate(node)
+
+    def _disconnect_and_terminate(self, node):
         self._delnode(node)
-        del self._send_dict[node]
         self._lock.acquire()
         self._process_n[node].terminate()
         self._process_n[node].join()
         del self._process_n[node]
+        del self._send_dict[node]
         self._lock.release()
 
     def startup(self):
