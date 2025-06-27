@@ -66,7 +66,7 @@ def check_term_and_host(nd, hd, libdir):
     if not starsfile.checkfileexist(nd + '.allow', os.path.dirname(os.path.realpath(__file__)), libdir):
         return True
     host, ip = system_gethostname_or_ip(hd)
-    if system_checkhost('.allow', host, ip, True, libdir):
+    if system_checkhost(nd + '.allow', host, ip, True, libdir):
         return True
     return False
 
