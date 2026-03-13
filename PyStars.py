@@ -9,11 +9,12 @@ stars.kek.jp
 - 2023.02.13 Fix to avoid command permission problem, J. Szczesny. 1.06
 - 2024.07.28 Fixed server crash if no STARS client try to connect, J. Szczesny. 1.07
 - 2025.05.23 Bugfix for disconnect in Multiprocess version, J. Szczesny. 1.08
+- 2026.03.13 Bugfix for double entries in list, J. Szczesny. 1.09
 """
 
 __author__ = 'Jan Szczesny'
-__version__ = '1.08'
-__date__ = '2025.05.23'
+__version__ = '1.09'
+__date__ = '2026.03.13'
 __license__ = 'MIT'
 
 import os

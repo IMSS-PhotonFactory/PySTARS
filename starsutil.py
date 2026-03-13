@@ -2,6 +2,7 @@
 
 - 2023-01-30 (Mon) Fixed reconnectable problem, T.Kosuge.
 - 2023-02-13 (Mon) Fix to avoid command permission problem, J. Szczesny.
+- 2026.03.13 (Fri) Bugfix for double entries in list, J. Szczesny.
 """
 
 import os
@@ -131,8 +132,10 @@ def check_reconnecttable(node, hd, reconndeny, reconnallow):
 
 def system_loadcommandpermission(libdir, cmddeny, cmdallow):
     try:
-        cmddeny.extend(starsfile.loadfiletolist(CMDDENY, os.path.dirname(os.path.realpath(__file__)), libdir))
-        cmdallow.extend(starsfile.loadfiletolist(CMDALLOW, os.path.dirname(os.path.realpath(__file__)), libdir))
+        cmddeny_new = starsfile.loadfiletolist(CMDDENY, os.path.dirname(os.path.realpath(__file__)), libdir)
+        cmdallow_new = starsfile.loadfiletolist(CMDALLOW, os.path.dirname(os.path.realpath(__file__)), libdir)
+        [cmddeny.append(x) for x in cmddeny_new if x not in cmddeny]
+        [cmdallow.append(x) for x in cmdallow_new if x not in cmdallow]
         return True
     except Exception:
         return False
@@ -147,8 +150,10 @@ def system_loadaliases(libdir, aliasreal, realalias):
 def system_loadreconnecttablepermission(libdir, reconndeny, reconnallow):
     try:
         #2023-01-30 (Mon) Substitution was changed into extend by T.Kosuge.
-        reconndeny.extend(starsfile.loadfiletolist(RECONNECTABLEDENY, os.path.dirname(os.path.realpath(__file__)), libdir))
-        reconnallow.extend(starsfile.loadfiletolist(RECONNECTABLEALLOW, os.path.dirname(os.path.realpath(__file__)), libdir))
+        reconndeny_new = starsfile.loadfiletolist(RECONNECTABLEDENY, os.path.dirname(os.path.realpath(__file__)), libdir)
+        reconnallow_new = starsfile.loadfiletolist(RECONNECTABLEALLOW, os.path.dirname(os.path.realpath(__file__)), libdir)
+        [reconndeny.append(x) for x in reconndeny_new if x not in reconndeny]
+        [reconnallow.append(x) for x in reconnallow_new if x not in reconnallow]
         return True
     except Exception:
         return False
